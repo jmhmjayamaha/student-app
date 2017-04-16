@@ -16,26 +16,22 @@ public class StudentServiceImpl implements StudentService {
 	
 	@Override
 	public List<Student> getAllStudents() {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Student>) studentRepository.findAll();
 	}
 
 	@Override
 	public List<Student> getStudentByFirstName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return studentRepository.findByFirstName(name);
 	}
 
 	@Override
 	public List<Student> getStudentByLastName(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		return studentRepository.findByLastName(name);
 	}
 
 	@Override
-	public List<Student> getStudentByStuId(String stuId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Student getStudentByStuId(String stuId) {
+		return studentRepository.findByStuNo(stuId);
 	}
 
 	@Override
@@ -48,14 +44,24 @@ public class StudentServiceImpl implements StudentService {
 	}
 
 	@Override
-	public void updateStudent(int id, Student student) {
-		// TODO Auto-generated method stub
+	public void updateStudent(String stuNo, Student student) {
+		Student stu = studentRepository.findByStuNo(stuNo);
+		if(stu != null) {
+			student.setId(stu.getId());
+			studentRepository.save(student);
+		} else {
+			// throw an error
+		}
 		
 	}
 
 	@Override
 	public boolean deleteStudent(String stuId) {
-		// TODO Auto-generated method stub
+		Student student = studentRepository.findByStuNo(stuId);
+		if( student != null ) {
+			studentRepository.delete(student);
+			return true;
+		}
 		return false;
 	}
 
