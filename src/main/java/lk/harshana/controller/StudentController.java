@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -60,5 +61,17 @@ public class StudentController {
 			return new AbstractMap.SimpleEntry<String, String>("status", "deleted");
 		} 
 		return new AbstractMap.SimpleEntry<String, String>("status", "Not Deleted");
+	}
+	
+	@RequestMapping(method=RequestMethod.GET , value="/{stuNo}")
+	public ResponseEntity<Student> getStudentByStuNo(@PathVariable("stuNo") String stuNo) {
+		Student student =  studentService.getStudentByStuId(stuNo);
+		
+		if(student != null) {
+			return new ResponseEntity<Student>(student, HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 	}
 }
