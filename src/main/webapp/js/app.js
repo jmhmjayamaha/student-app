@@ -13,9 +13,6 @@ app.config(function($routeProvider) {
 	})
 	.when("/search", {
 		templateUrl : "pages/search.html"
-	})
-	.when("/delete", {
-		templateUrl : "pages/delete.html"
 	});
 });
 
