@@ -26,6 +26,7 @@ app.controller("studentController", function($scope, $http) {
 			function() {
 				alert("sucessfully added");
 				$scope.getAllStudents();
+				$scope.reset();
 			} , 
 			function() {
 				alert("something went wrong");
@@ -68,6 +69,7 @@ app.controller("studentController", function($scope, $http) {
 			function() {
 				alert("successfully updated");
 				$scope.getAllStudents();
+				$scope.reset();
 			} , 
 			function() {
 				alert("something went wrong");
@@ -85,5 +87,15 @@ app.controller("studentController", function($scope, $http) {
 				alert("No such student")
 			}	
 		);
+	}
+
+	$scope.reset = function() {
+		$scope.stuNo = "";
+		$scope.fName = "";
+		$scope.lName = "";
+		$scope.gender = "";
+		$scope.age = "";
+		$scope.address = "";
+		$scope.email = "";
 	}
 });
