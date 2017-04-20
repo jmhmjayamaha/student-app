@@ -1,7 +1,5 @@
 app.controller("studentController", function($scope, $http) {
 	
-	getAllStudents();
-	
 	$scope.getAllStudents = function() {
 		$http.get("http://localhost:8080/student-app/api/student").then(
 				function(response){
@@ -11,6 +9,7 @@ app.controller("studentController", function($scope, $http) {
 		);
 	}
 	
+	$scope.getAllStudents();
 	
 	$scope.addStudent = function() {
 		var dataObject = {
@@ -26,7 +25,7 @@ app.controller("studentController", function($scope, $http) {
 		$http.post("http://localhost:8080/student-app/api/student",dataObject).then(
 			function() {
 				alert("sucessfully added");
-				getAllStudents();
+				$scope.getAllStudents();
 			} , 
 			function() {
 				alert("something went wrong");
@@ -68,7 +67,7 @@ app.controller("studentController", function($scope, $http) {
 		$http.put("http://localhost:8080/student-app/api/student/"+ $scope.stuNo,  dataObject).then(
 			function() {
 				alert("successfully updated");
-				getAllStudents();
+				$scope.getAllStudents();
 			} , 
 			function() {
 				alert("something went wrong");
@@ -77,10 +76,10 @@ app.controller("studentController", function($scope, $http) {
 	}
 	
 	$scope.deleteStudent = function(stuNo) {
-		$http.delete("http://localhost:8080/student-app/api/student/" + $scope.deleteData).then(
+		$http.delete("http://localhost:8080/student-app/api/student/" + stuNo).then(
 			function() {
 				alert("successfully deleted");
-				getAllStudents();
+				$scope.getAllStudents();
 			} ,
 			function() {
 				alert("No such student")
