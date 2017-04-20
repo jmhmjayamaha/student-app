@@ -12,12 +12,14 @@
 </head>
 <body ng-app="myApp" ng-controller = "studentController">
 
-<h1>single page application for student management</h1>
+<h1 align="center">single page application for student management</h1>
 
-<a href="#/">Main</a>
-<a href="#save">SAVE</a>
-<a href="#update">UPDATE</a>
-<a href="#search">SEARCH</a>	
+<div align="center">
+	<button class="btn btn-info"><a href="#/">Main</a></button>
+	<button class="btn btn-info"><a href="#save">SAVE</a></button>
+	<button class="btn btn-info"><a href="#update">UPDATE</a></button>
+	<button class="btn btn-info"><a href="#search">SEARCH</a></button>	
+</div><br>
 
 <div ng-view></div>
 
